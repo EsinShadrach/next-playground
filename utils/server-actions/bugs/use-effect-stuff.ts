@@ -37,6 +37,10 @@ class MakeRequest {
     const getTodos = async <DataType>(): Promise<DataType> => {
       try {
         const response = await fetch(this.url);
+        if (!response.ok) {
+          const statusCode = response.status;
+          throw new Error(`Something went wrong ${statusCode}`);
+        }
         return await response.json();
       } catch (error) {
         const errorMessage = error as Error;
