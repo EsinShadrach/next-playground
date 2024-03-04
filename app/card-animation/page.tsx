@@ -20,15 +20,11 @@ export default function Page() {
   );
 }
 
-export function GlowingCard({
-  img,
-  title = "",
-  subtitle = "",
-}: GlowingCardProps) {
+function GlowingCard({ img, title = "", subtitle = "" }: GlowingCardProps) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (event) => {
+  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
     const { clientX, clientY } = event;
 
     const cardRect = event.currentTarget.getBoundingClientRect();
@@ -39,7 +35,7 @@ export function GlowingCard({
     const yRotation = (mouseXFromCenter / cardWidth) * maxRotationValue;
 
     setRotation({ x: xRotation, y: yRotation });
-  };
+  }
 
   const handleMouseEnter = () => {
     setIsHovered(true);
